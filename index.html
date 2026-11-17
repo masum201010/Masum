@@ -4,7 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Masum Sk - Official Personal Space</title>
-    <!-- Google Fonts: Inter (Clean & Minimalist Apple Style) -->
+    <!-- Favicon Code (Upload a logo named 'favicon.png' in your GitHub repo) -->
+    <link rel="icon" type="image/png" href="favicon.png">
+    
+    <!-- Google Fonts: Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -16,7 +19,6 @@
             --text-main: #1d1d1f;
             --text-muted: #86868b;
             --accent: #0071e3;
-            --card-border: #f5f5f7;
         }
 
         * {
@@ -24,6 +26,7 @@
             padding: 0;
             box-sizing: border-box;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -33,10 +36,53 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* Glassmorphism Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--text-main);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links a {
+            margin-left: 25px;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
         .container {
             max-width: 900px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 100px 20px 60px; /* Added top padding for fixed navbar */
         }
 
         h1, h2, h3 {
@@ -44,11 +90,30 @@
             letter-spacing: -0.02em;
         }
 
-        /* Hero Section */
+        /* Hero Section with Profile Pic */
         .hero {
             text-align: center;
             margin-bottom: 70px;
             padding-top: 40px;
+        }
+
+        /* Profile Picture Slot */
+        .profile-pic {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f5f5f7 0%, #e5e5ea 100%);
+            margin: 0 auto 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            /* Uncomment the line below and add your image link to use a real photo */
+            /* background-image: url('your-image-link.jpg'); background-size: cover; background-position: center; color: transparent; */
         }
 
         .hero h1 {
@@ -75,6 +140,7 @@
         /* Section Global */
         .section {
             margin-bottom: 90px;
+            scroll-margin-top: 80px; /* Adjust for navbar when scrolling */
         }
 
         .section-title {
@@ -119,12 +185,21 @@
         /* Inner Circle / Friends Section */
         .friends-desc {
             text-align: center;
-            color: var(--text-muted);
-            margin-bottom: 40px;
+            color: var(--text-main);
+            margin-bottom: 10px;
             max-width: 650px;
             margin-left: auto;
             margin-right: auto;
             font-size: 1.05rem;
+            font-weight: 500;
+        }
+        
+        .hater-flex-text {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            font-size: 0.95rem;
+            font-style: italic;
         }
 
         .friends-grid {
@@ -230,7 +305,7 @@
             flex-direction: column;
             align-items: center;
             gap: 15px;
-            margin-bottom: 50px;
+            margin-bottom: 40px;
         }
 
         .btn-primary {
@@ -268,6 +343,13 @@
             background-color: #0077ed;
             transform: scale(1.02);
         }
+        
+        .footer-flex-text {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
 
         .copyright {
             font-size: 0.9rem;
@@ -278,15 +360,30 @@
             .hero h1 { font-size: 2.8rem; }
             .friend-card { width: 100%; max-width: 360px; }
             .btn-primary, .btn-secondary { width: 90%; }
+            .nav-links { display: none; /* simple mobile view optimization */ }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="#home" class="nav-logo">masumsk.com</a>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#expertise">Expertise</a>
+                <a href="#inner-circle">Inner Circle</a>
+                <a href="#connect">Connect</a>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
         
         <!-- Hero Section -->
-        <header class="hero">
+        <header id="home" class="hero">
+            <div class="profile-pic">MS</div>
             <h1>Masum Sk</h1>
             <p class="tagline">Tech Learner | Rule of Law Supporter | Movie Buff & Traveler</p>
             <p class="about-me">
@@ -295,7 +392,7 @@
         </header>
 
         <!-- Tech Skills Section -->
-        <section class="section">
+        <section id="expertise" class="section">
             <h2 class="section-title">Areas of Expertise</h2>
             <div class="skills-grid">
                 <div class="skill-card">
@@ -318,10 +415,13 @@
         </section>
 
         <!-- Inner Circle Section -->
-        <section class="section">
+        <section id="inner-circle" class="section">
             <h2 class="section-title">The Inner Circle</h2>
             <p class="friends-desc">
                 While I know many people, these two individuals hold a special place. They are my truest friends, standing by me selflessly and without any hidden agendas.
+            </p>
+            <p class="hater-flex-text">
+                "Seats at my table are strictly limited and reserved for genuine souls. If your name isn't on this list, you are just a spectator. Enjoy the view."
             </p>
             
             <div class="friends-grid">
@@ -348,7 +448,7 @@
         </section>
         
         <!-- Footer & Contact Section -->
-        <footer class="footer-section">
+        <footer id="connect" class="footer-section">
             <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 25px;">Connect With Me</h2>
             
             <!-- Social Media Links -->
@@ -377,6 +477,7 @@
                 </a>
             </div>
 
+            <p class="footer-flex-text">Independently owned. Privately secured. While the crowd follows trends, I build infrastructure. Keep watching, take notes.</p>
             <p class="copyright">&copy; 2026 Masum Sk. All rights reserved.</p>
         </footer>
 
